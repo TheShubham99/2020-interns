@@ -12,7 +12,12 @@ print("\n\nTo - ")
 end_month=int(input("Enter end Month (Numeric) i.e (1,2,3,etc.) :"))
 end_date=int(input("Enter end date (Numeric) i.e (1,2,3,etc.) :"))
 end_year=int(input("Enter end year (Numeric) i.e (2019,2020,etc.) :"))
+
+#Currency Selection
+currency=input("\nEnter currency abbreviation to Visualize (eg. USD,INR) -")
+
 #Console Data Input End
+
 
 #load data
 with open('./data.json') as f:
@@ -26,7 +31,7 @@ for i in data['rates']:
     #compare month and year (from 1 Jan 2019 to 31 Jan 2019)
     if((date_obj.month>=start_month and date_obj.year>=start_year and date_obj.day>=start_date) and (date_obj.month<=end_month and date_obj.year<=end_year and date_obj.day<=end_date)):
         #create a dictionary for ploting
-        ex_rate_jan[date_obj.day]=data['rates'][str(i)]['INR']
+        ex_rate_jan[date_obj.day]=data['rates'][str(i)][currency]
 
 
 #Sort the data i.e. from 1st Jan to 31st Jan
@@ -38,6 +43,6 @@ plt.plot(d,rate)
 
 #Labels
 plt.xlabel('Dates')
-plt.ylabel('INR Exchange Rate (base:EUR)')
+plt.ylabel(str(currency)+' Exchange Rate (base:EUR)')
 
 plt.show()
