@@ -28,13 +28,13 @@ ex_rate_jan=dict()
 for i in data['rates']:
     date_obj = datetime.strptime(i, '%Y-%m-%d').date()
     
-    #compare month and year (from 1 Jan 2019 to 31 Jan 2019)
+    #compare date,month and year
     if((date_obj.month>=start_month and date_obj.year>=start_year and date_obj.day>=start_date) and (date_obj.month<=end_month and date_obj.year<=end_year and date_obj.day<=end_date)):
         #create a dictionary for ploting
         ex_rate_jan[date_obj.day]=data['rates'][str(i)][currency]
 
 
-#Sort the data i.e. from 1st Jan to 31st Jan
+#Sort the data
 plot_list=sorted(ex_rate_jan.items())
 
 #prepare for ploting
