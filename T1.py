@@ -27,9 +27,9 @@ plot_list_gbp=sorted(ex_rate_gbp_jan.items())
 
 #prepare for ploting
 d, rate = zip(*plot_list_inr)
-plt.plot(d,rate)
+plt.plot(d,rate,'ro-')
 d, rate = zip(*plot_list_gbp)
-plt.plot(d,rate)
+plt.plot(d,rate,'bo-')
 
 
 #Labels
