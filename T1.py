@@ -31,9 +31,14 @@ plt.plot(d,rate,'ro-')
 d, rate = zip(*plot_list_gbp)
 plt.plot(d,rate,'bo-')
 
+# Reference Box
+plt.legend(('INR','GBP'),loc='upper right')
 
 #Labels
 plt.xlabel('Dates (from 1 Jan 2019 to 31 Jan 2019)')
 plt.ylabel('INR Exchange Rate (base:EUR)')
+
+# Note
+plt.figtext(0.5, 0.5, "Hover over any point in one of the two graphs to view the rate according to the date.\n\n (in bottom right cornor x is date in JAN 2019 & y is exchange rate.)\n\n Use zoom utility to view presice values.", ha="center", fontsize=7, bbox={"facecolor":"orange", "alpha":0.5, "pad":3})
 
 plt.show()
