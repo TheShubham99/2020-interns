@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 with open('./data.json') as f:
     data=json.load(f)
 
+with open('./latest-rates.json') as f:
+    latest_data=json.load(f)
+ 
 ex_rate_inr_jan=dict()
 ex_rate_gbp_jan=dict()
 
@@ -26,19 +29,26 @@ plot_list_gbp=sorted(ex_rate_gbp_jan.items())
 
 
 #prepare for ploting
+#plot both graphs INR, GBP
 d, rate = zip(*plot_list_inr)
 plt.plot(d,rate,'ro-')
 d, rate = zip(*plot_list_gbp)
 plt.plot(d,rate,'bo-')
 
+#plot latest data for INR and GBP
+plt.plot(0, latest_data['rates']['INR']*(1/latest_data['rates']['EUR']), marker='x', markersize=12, color="red")
+
+plt.plot(0, latest_data['rates']['GBP']*(1/latest_data['rates']['EUR']), marker='x', markersize=12, color="blue")
+
+
 # Reference Box
-plt.legend(('INR','GBP'),loc='upper right')
+plt.legend(('INR','GBP','Latest \nINR rate','Latest \nGBP rate \n\n(base:EUR)'),loc='best')
 
 #Labels
-plt.xlabel('Dates (from 1 Jan 2019 to 31 Jan 2019)')
+plt.xlabel('Dates')
 plt.ylabel('INR and GBP Exchange Rate (base:EUR)')
 
 # Note
-plt.figtext(0.5, 0.5, "Hover over any point in one of the two graphs to view the rate according to the date.\n\n (in bottom right cornor x is date in JAN 2019 & y is exchange rate.)\n\n Use zoom utility to view presice values.", ha="center", fontsize=7, bbox={"facecolor":"orange", "alpha":0.5, "pad":3})
+plt.figtext(0.4, 0.5, "Hover over any point on one of the two graphs\n to view the rate according to the date.\n\n (in bottom right cornor x is date in \nJAN 2019 & y is exchange rate.)\n\n Use zoom utility to view presice values.", ha="center", fontsize=7, bbox={"facecolor":"orange", "alpha":0.5, "pad":3})
 
 plt.show()
